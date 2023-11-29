@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randam Passord Genetator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+     
+    <div class="container">
+        <h1>Generate a <br><span>Strong Random Passord </span> </h1>
+        <h3>Create strong passwords with my free password generator</h3>
+
+        <div class="display">
+            <input type="text" id="genpassword" placeholder="Password">
+            <img src="./media/copy.png" alt="copy image" onclick="copypassword()">
+        </div>
+        <h3><span>SUPER STRONG!</span>  Nobody’s cracking this pass­word anytime soon.</h3>
+
+        <button onclick="generatePassword()"><img src="./media/generate.png" alt="generate password"> Genetate Password</button>
+    </div>
+
+    <script>
+        const passwordbox=document.getElementById("genpassword");
+        const passlength=12;
+        const upperCase="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowercase="abcdefghijklmnopqrstuvwxyz";
+        const numbers="0123456789";
+        const symbols="@#$%^&*()_+~|{}[]<>/\-=";
+
+        const allsymbols= upperCase+lowercase+numbers+symbols;
+
+        function generatePassword(){
+            let result="";
+            result+=upperCase[Math.floor(Math.random() * upperCase.length)];
+            result+=lowercase[Math.floor(Math.random() * lowercase.length)];
+            result+=numbers[Math.floor(Math.random() * numbers.length)];
+            result+=symbols[Math.floor(Math.random()*symbols.length)];
+
+            while(passlength >result.length){ 
+                result+=allsymbols[Math.floor(Math.random()*allsymbols.length)];
+            }
+            passwordbox.value=result;
+        }
+
+        function copypassword(){
+            passwordbox.select();
+            document.execCommand("copy");
+        }
+
+    </script>
+
+</body>
+</html>
